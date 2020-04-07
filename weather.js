@@ -22,7 +22,7 @@ function pageStart () {
 
 //Finding Current City's Info//
 function searchCity(city) {
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b90410cbb9f6bbe669e3f5a1db596f13";
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b90410cbb9f6bbe669e3f5a1db596f13";
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -85,7 +85,7 @@ $("#select-city").on("click", function(event) {
 
   //Daily Forecast//
   function dailyForecast(forecast) {
-    var queryURL="http://api.openweathermap.org/data/2.5/forecast?q=" + forecast + "&appid=b90410cbb9f6bbe669e3f5a1db596f13";
+    var queryURL="https://api.openweathermap.org/data/2.5/forecast?q=" + forecast + "&appid=b90410cbb9f6bbe669e3f5a1db596f13";
     $.ajax({
       url: queryURL,
       method: "GET"
