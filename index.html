@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Gotu&family=Source+Sans+Pro:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container nav">
+                    <div id="title"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container body">
+        <div class="row">
+            <div class="col-md-4">
+                <form id="city-form">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="city-input" placeholder="Search for a City...">
+                        <div class="input-group-append">
+                            <span class="btn-primary" id="select-city" type="submit" value="Enter">Search</span>
+                        </div>
+                    </div>
+                </form>
+                <div id="buttons">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card main">
+                    <div class="card-body">
+                        <div id="city"></div>
+                        <br>
+                        <div id="uv"></div>
+                        <div id="temperature"></div>
+                        <div id="humidity"></div>
+                        <div id="wind"></div>
+                    </div>
+                </div>
+                <h2>5-day Forecast</h3>
+                    <br>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col" id="date-1"></th>
+                                <th scope="col" id="date-2"></th>
+                                <th scope="col" id="date-3"></th>
+                                <th scope="col" id="date-4"></th>
+                                <th scope="col" id="date-5"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"></th>
+                                <td id="icon-1"></td>
+                                <!-- <i class="fas fa-sun"></i> -->
+                                <td id="icon-2"></td>
+                                <!-- <i class="fas fa-cloud-rain"></i> -->
+                                <td id="icon-3"></td>
+                                <!-- <i class="fas fa-cloud"></i> -->
+                                <td id="icon-4"></td>
+                                <!-- <i class="fas fa-snowflake"></i> -->
+                                <td id="icon-5"></td>
+                                <!-- <i class="fas fa-sun"></i> -->
+                            </tr>
+                            <tr>
+                                <th scope="row">Temperature</th>
+                                <td id="temp-1"></td>
+                                <td id="temp-2"></td>
+                                <td id="temp-3"></td>
+                                <td id="temp-4"></td>
+                                <td id="temp-5"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Humidity</th>
+                                <td id="humid-1"></td>
+                                <td id="humid-2"></td>
+                                <td id="humid-3"></td>
+                                <td id="humid-4"></td>
+                                <td id="humid-5"></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="weather.js"></script>
+</body>
+
+</html>
