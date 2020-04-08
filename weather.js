@@ -41,7 +41,7 @@ function searchCity(city) {
         var wind=$("<p>").text("Wind Speed: " + response.wind.speed + " mph")
         $("#wind").empty();
         $("#wind").append(wind);
-        if (response.weather[0].id === 500) {
+        if (response.weather[0].id === 500 || response.weather[0].id === 501) {
           var icon=$("<img>").attr("src", "images/storm.png");
           $("#uv").empty();
           $("#uv").append(icon);
@@ -61,7 +61,7 @@ function searchCity(city) {
           var icon=$("<img>").attr("src", "images/snowflake.png");
           $("#uv").empty();
           $("#uv").append(icon);
-        } else if (response.weather[0].id === 200) {
+        } else if (response.weather[0].id === 200 || response.weather[0].id === 201 || response.weather[0].id === 202 || response.weather[0].id === 210 || response.weather[0].id === 211 || response.weather[0].id === 212 || response.weather[0].id === 221 || response.weather[0].id === 230 || response.weather[0].id === 231 || response.weather[0].id === 232) {
           var icon=$("<img>").attr("src", "images/storm.png");
           $("#uv").empty();
           $("#uv").append(icon);
@@ -104,6 +104,8 @@ $("#select-city").on("click", function(event) {
       var iconFive=(response.list[5].weather[0].id);
       // $("#icon-5").append(iconFive);
 
+      console.log(response.list[2].weather[0].id);
+
       var icons = [iconOne, iconTwo, iconThree, iconFour, iconFive];
 
       for (i=0; i<icons.length; i++) {
@@ -120,7 +122,7 @@ $("#select-city").on("click", function(event) {
           var iconNum= "#icon-" + (i + 1)
           $(iconNum).empty();
           $(iconNum).append(icon);
-        } else if (icons[i] === 500) { //rainy
+        } else if (icons[i] === 500 || icons[i] === 501 ) { //rainy
           var icon=$("<i>").addClass("fas fa-cloud-rain");
           var iconNum= "#icon-" + (i + 1)
           $(iconNum).empty();
@@ -130,7 +132,7 @@ $("#select-city").on("click", function(event) {
           var iconNum= "#icon-" + (i + 1)
           $(iconNum).empty();
           $(iconNum).append(icon);
-        } else if (icons[i] === 200) { //storm
+        } else if (icons[i] === 200 || icons[i] === 201 || icons[i] === 202 || icons[i] === 210 || icons[i] === 211 || icons[i] === 212 || icons[i] === 221 || icons[i] === 230 || icons[i] === 231 || icons[i] === 232) { //storm
           var icon=$("<i>").addClass("fas fa-bolt");
           var iconNum= "#icon-" + (i + 1)
           $(iconNum).empty();
