@@ -7,6 +7,7 @@ $("#title").append(today);
 
 //Putting the Last City on Page//
 function pageStart () {
+  $("#future").css("display", "block");
   var currentCity=localStorage.getItem("city")
   var split=currentCity.split(", ");
   // console.log(split);
@@ -20,6 +21,56 @@ function pageStart () {
   dailyForecast(lastCity);
 }
 
+//Current Weather based on Location//
+function weather (lat, long) {
+  var queryURL="https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&appid=b90410cbb9f6bbe669e3f5a1db596f13";
+  $.ajax ({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response){
+    console.log(response);
+    $("#future").css("display", "none");
+    var cityName=$("<h2>").text("Chicago");
+    $("#city").empty();
+    $("#city").append(cityName);
+    var temperature=$("<p>").text(Math.round(((response.current.temp - 273.15) *1.8) + 32) + "°F");
+    $("#temperature").empty();
+    $("#temperature").append(temperature);
+    var humidity=$("<p>").text("Humidity: " + response.current.humidity + "%")
+    $("#humidity").empty();
+    $("#humidity").append(humidity);
+    var wind=$("<p>").text("Wind Speed: " + response.current.wind_speed + " mph")
+    $("#wind").empty();
+    $("#wind").append(wind);
+    if (response.hourly[0].weather[0].id === 500 || response.hourly[0].weather[0].id === 501) {
+      var icon=$("<img>").attr("src", "images/storm.png");
+      $("#uv").empty();
+      $("#uv").append(icon);
+    } else if (response.hourly[0].weather[0].id >= 502 && response.hourly[0].weather[0].id <= 504) {
+      var icon=$("<img>").attr("src", "images/heavyrain.png");
+      $("#uv").empty();
+      $("#uv").append(icon);
+    } else if (response.hourly[0].weather[0].id === 800) {
+      var icon=$("<img>").attr("src", "images/sun.png");
+      $("#uv").empty();
+      $("#uv").append(icon);
+    } else if (response.hourly[0].weather[0].id === 801 || response.hourly[0].weather[0].id === 802 || response.hourly[0].weather[0].id === 803 || response.hourly[0].weather[0].id === 804) {
+      var icon=$("<img>").attr("src", "images/cloud.png");
+      $("#uv").empty();
+      $("#uv").append(icon);
+    } else if (response.hourly[0].weather[0].id === 600) {
+      var icon=$("<img>").attr("src", "images/snowflake.png");
+      $("#uv").empty();
+      $("#uv").append(icon);
+    } else if (response.hourly[0].weather[0].id === 200 || response.hourly[0].weather[0].id === 201 || response.hourly[0].weather[0].id === 202 || response.hourly[0].weather[0].id === 210 || response.hourly[0].weather[0].id === 211 || response.hourly[0].weather[0].id === 212 || response.hourly[0].weather[0].id === 221 || response.hourly[0].weather[0].id === 230 || response.hourly[0].weather[0].id === 231 || response.hourly[0].weather[0].id === 232) {
+      var icon=$("<img>").attr("src", "images/storm.png");
+      $("#uv").empty();
+      $("#uv").append(icon);
+    }
+  })
+}
+weather(41.85, -87.65)
+
 //Finding Current City's Info//
 function searchCity(city) {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b90410cbb9f6bbe669e3f5a1db596f13";
@@ -27,8 +78,8 @@ function searchCity(city) {
         url: queryURL,
         method: "GET"
       }).then(function(response) {
-        console.log(response.name);
-        console.log(response.weather[0].id);
+        console.log(response);
+        // console.log(response.weather[0].id);
         var cityName=$("<h2>").text(response.name);
         $("#city").empty();
         $("#city").append(cityName);
@@ -70,6 +121,7 @@ function searchCity(city) {
 }
 
 $("#select-city").on("click", function(event) {
+  $("#future").css("display", "block");
     event.preventDefault();
     var city = $("#city-input").val().trim();
     var preSave=localStorage.getItem("city");
